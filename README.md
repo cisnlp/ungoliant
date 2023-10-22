@@ -2,22 +2,15 @@
 
 <img align="left" src="img/logo.png" width="200" height="200" /> 
 
-![](https://img.shields.io/crates/d/ungoliant?style=flat-square) ![](https://img.shields.io/crates/l/ungoliant?style=flat-square) 
-[![codecov](https://codecov.io/gh/oscar-corpus/ungoliant/branch/master/graph/badge.svg?token=Q3M8F86E2G)](https://codecov.io/gh/oscar-corpus/ungoliant)
+![](https://img.shields.io/crates/l/ungoliant?style=flat-square) 
 
 🕷️ **Ungoliant is a high-performance pipeline that provides tools to build corpus generation pipelines from CommonCrawl.** 🕷️
 
-It currently is the generation pipeline for [OSCAR corpus](https://oscar-corpus.com), from [CommonCrawl](https://commoncrawl.org).
-Ungoliant is a replacement of [goclassy](https://github.com/oscar-corpus/goclassy).
-
-
-![](https://img.shields.io/github/workflow/status/oscar-corpus/ungoliant/Rust/master?label=main&style=flat-square)                           ![](https://img.shields.io/github/workflow/status/oscar-corpus/ungoliant/Rust/dev?label=dev&style=flat-square)
 
 ## Installation
 
 ### Installing/Compiling the binary
-* Via `cargo`: `cargo install ungoliant`
-* Via `git`: `cargo install --git https://github.com/oscar-corpus/ungoliant`
+* Via `git`: `cargo install --git https://github.com/kargaranamir/ungoliant`
 
 Ungoliant needs numerous dependencies that should be compiled when installing. However `cmake / gcc` can be needed as the project uses [fasttext-rs](https://github.com/messense/fasttext-rs).
 
@@ -36,15 +29,9 @@ and use `cargo install ungoliant --features kenlm` or `cargo b --features kenlm`
 ### Getting a language identification file (for fastText):
 
 By default, `ungoliant` expects the `lid.176.bin` model by meta. 
-Use `curl https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin -o lid.176.bin` to get it.
+Use `wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O lid.176.bin` to get it.
 
 However, you can use the model you want: just point to its path using `ungoliant download --lid-path <path to lid>`.
-
-Other options include:
-
-- NLLB model (https://huggingface.co/facebook/fasttext-language-identification)
-- OpenLID model (https://github.com/laurieburchell/open-lid-dataset)
-
 
 ## Usage 
 
@@ -53,7 +40,7 @@ The usual way of generating corpora is:
 1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/connect/blog/) and decompress it.
 2. Download the files using the `download` command.
 3. Generate the corpus using the `pipeline` command (it may take some time).
-4. Head on to [oscar-tools](https://github.com/oscar-project/oscar-tools) for the packaging steps
+4. Head on to [oscar-tools](https://github.com/kargaranamir/oscar-tools) for the packaging steps
 
 You can find more information on each command's `--help`.
 

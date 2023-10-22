@@ -34,8 +34,7 @@ jobs:
       - name: Fetch identification bins
         if: steps.cache-lid.outputs.cache-hit != 'true'
         run: |
-          wget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin
-          wget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.189.bin
+          wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O lid.176.bin
       - name: Fetch blocklist
         if: steps.cache-blocklist.outputs.cache-hit != 'true'
         run: |
