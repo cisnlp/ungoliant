@@ -28,10 +28,13 @@ and use `cargo install ungoliant --features kenlm` or `cargo b --features kenlm`
 
 ### Getting a language identification file (for fastText):
 
-By default, `ungoliant` expects the `lid.176.bin` model by meta. 
-Use `wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O lid.176.bin` to get it.
+By default, `ungoliant` expects the `lid.176.bin` model name. 
+Use `wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O lid.176.bin` to get glotlid as lid.176.bin.
 
 However, you can use the model you want: just point to its path using `ungoliant download --lid-path <path to lid>`.
+
+- [ ] change thresholds.
+
 
 ## Usage 
 

@@ -49,7 +49,7 @@ use warc::{Record, WarcHeader};
 
 use crate::io::LangFilesDoc;
 
-const DOC_THRESHOLD: f32 = 0.6f32;
+const DOC_THRESHOLD: f32 = 0.2f32;
 
 // TODO: Implement structopt directly here.
 pub struct OscarDoc {
