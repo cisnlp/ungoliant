@@ -43,7 +43,7 @@ The usual way of generating corpora is:
 1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/get-started)
 2. decompress it using `gzip -d wet.paths.gz`.
 3. Download the files using the `download` command: `ungoliant download wet.paths cc`
-4. Generate the corpus using the `pipeline` command (it may take some time).
+4. Generate the corpus using the `pipeline` command (it may take some time): `ungoliant pipeline ./res/shards/ ./res/corpus --lid-path lid.176.bin --blocklist-path ./res/blocklist/`
 5. Head on to [oscar-tools](https://github.com/kargaranamir/oscar-tools) for the packaging steps
 
 You can find more information on each command's `--help`.
