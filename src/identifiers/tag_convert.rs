@@ -4040,7 +4040,7 @@ mod tests {
         let table_10: [(
             Result<LanguageTag<String>, _>,
             Result<LanguageTag<String>, _>,
-        ); 2] = [("eng", "eng")]
+        ); 2] = [("eng", "eng"), ("fra", "fra")]
             .map(|(old, new)| (format!("__label__{old}"), format!("__label__{new}")))
             .map(|(old, new)| (Tag::new(&old).try_into(), Tag::new(&new).try_into()));
 
