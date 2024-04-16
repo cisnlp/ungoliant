@@ -40,10 +40,11 @@ However, you can use the model you want: just point to its path using `ungoliant
 
 The usual way of generating corpora is:
 
-1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/connect/blog/) and decompress it.
-2. Download the files using the `download` command.
-3. Generate the corpus using the `pipeline` command (it may take some time).
-4. Head on to [oscar-tools](https://github.com/kargaranamir/oscar-tools) for the packaging steps
+1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/get-started)
+2. decompress it using `gzip -d wet.paths.gz`.
+3. Download the files using the `download` command: `ungoliant download wet.paths cc`
+4. Generate the corpus using the `pipeline` command (it may take some time).
+5. Head on to [oscar-tools](https://github.com/kargaranamir/oscar-tools) for the packaging steps
 
 You can find more information on each command's `--help`.
 
@@ -64,6 +65,8 @@ SUBCOMMANDS:
     pipeline    Run pipeline
     rebuild     Rebuild the corpus for a given language.
 ```
+
+### Steps
 
 ## Documentation
 
