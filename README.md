@@ -1,11 +1,12 @@
 # Ungoliant
 
-<img align="left" src="img/logo.png" width="200" height="200" /> 
-
 ![](https://img.shields.io/crates/l/ungoliant?style=flat-square) 
 
 🕷️ **Ungoliant is a high-performance pipeline that provides tools to build corpus generation pipelines from CommonCrawl.** 🕷️
 
+This pipeline was originally used to process the OSCAR dataset. It uses the fasttext lid.176.bin model to generate labels for 176 languages. We forked the code here so that it can function with GlotLID, which is also a fasttext model but can label text for more than 2000 languages.
+
+The outcome of this new dataset is the GlotCC dataset, available at: https://github.com/cisnlp/GlotCC
 
 ## Installation
 
@@ -14,37 +15,48 @@
 
 Ungoliant needs numerous dependencies that should be compiled when installing. However `cmake / gcc` can be needed as the project uses [fasttext-rs](https://github.com/messense/fasttext-rs).
 
-### KenLM feature
-
-The KenLM feature is optional because it relies on unsafe code that can break if the supplied model files are not correct.
-
-To enable it, install KenLM requirements:
-
-```bash
-apt install -y libboost-all-dev libeigen3-dev
-```
-
-and use `cargo install ungoliant --features kenlm` or `cargo b --features kenlm` if you're building from source.
 
 ### Getting a language identification file (for fastText):
 
 By default, `ungoliant` expects the `lid.176.bin` model name. 
-Use `wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O lid.176.bin` to get glotlid as lid.176.bin.
+Use `wget https://huggingface.co/cis-lmu/glotlid/resolve/main/model.bin -O glotlid.bin` to get GlotLID as `glotlid.bin`.
 
-However, you can use the model you want: just point to its path using `ungoliant download --lid-path <path to lid>`.
-
-- [ ] change thresholds.
+However, you can use the model you want: just point to its path using `ungoliant download --lid-path <path to lid>`. 
 
 
 ## Usage 
 
 The usual way of generating corpora is:
 
-1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/get-started)
-2. decompress it using `gzip -d wet.paths.gz`.
-3. Download the files using the `download` command: `ungoliant download wet.paths cc`
-4. Generate the corpus using the `pipeline` command (it may take some time): `ungoliant pipeline ./res/shards/ ./res/corpus --lid-path lid.176.bin --blocklist-path ./res/blocklist/`
-5. Head on to [oscar-tools](https://github.com/kargaranamir/oscar-tools) for the packaging steps
+1. First create this structure of folders with `mkdir`:
+
+```
+res
+├── annotation             
+│   └── ...
+├── blocklist             
+│   └── ...
+├── corpus             
+│   └── ...
+├── filter             
+│   └── ...
+└── shards             
+    └── ...
+```
+
+1. Fetch the `wet.paths.gz` file from the last [CommonCrawl dump](https://commoncrawl.org/get-started). <br />
+1.1 Decompress it using `gzip -d wet.paths.gz`. <br />
+1.2 Download the files using the `download` command: `ungoliant download wet.paths res/shards`. <br />
+   
+2. Download website categorizations using  `wget https://github.com/olbat/ut1-blacklists/archive/refs/heads/master.zip`. <br />
+2.1 Decompress it using `unzip master.zip`. <br />
+2.2 Move the blacklists to the `res/blocklist` using  `mv ut1-blacklists-master/blacklists/* res/blocklist`. <br />
+2.3 Decompress the adult block using `gzip -d res/blocklist/adult/domains.gz`. <br />
+2.4 Remove the blacklists-master using `rm -r ut1-blacklists-master`. <br />
+
+3. Generate the corpus using the `pipeline` command (it may take some time): `ungoliant pipeline ./res/shards/ ./res/corpus --lid-path glotlid.bin --blocklist-path ./res/blocklist/`. <br />
+
+4. Head on to [glotcc-filters](https://github.com/cisnlp/GlotCC/tree/main/filters/) for the additional filter steps.
 
 You can find more information on each command's `--help`.
 
@@ -65,12 +77,3 @@ SUBCOMMANDS:
     pipeline    Run pipeline
     rebuild     Rebuild the corpus for a given language.
 ```
-
-### Steps
-
-## Documentation
-
-Ungoliant is not yet on docs.rs: use `cargo doc --bins --open` to open the documentation.
-
-Head on to [OSCAR Documentation](https://oscar-project.github.io/documentation/) for more info about the project.
-
