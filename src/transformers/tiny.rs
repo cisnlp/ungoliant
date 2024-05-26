@@ -15,7 +15,7 @@ impl Annotate<Document> for TinyDocument {
 
 impl Default for TinyDocument {
     fn default() -> Self {
-        Self { threshold: 5 }
+        Self { threshold: 3 }
     }
 }
 
