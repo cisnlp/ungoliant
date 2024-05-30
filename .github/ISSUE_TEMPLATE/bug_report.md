@@ -1,9 +1,9 @@
 ---
 name: Bug report
-about: Create a report to help us improve ungoliant
+about: Create a report to help us improve GlotCC
 title: "[BUG]"
 labels: bug
-assignees: Uinelj
+assignees: kargaranamir
 
 ---
 

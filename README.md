@@ -1,4 +1,4 @@
-# Ungoliant
+# cisnlp/Ungoliant
 
 ![](https://img.shields.io/crates/l/ungoliant?style=flat-square) 
 
@@ -11,7 +11,7 @@ The outcome of this new dataset is the GlotCC dataset, available at: https://git
 ## Installation
 
 ### Installing/Compiling the binary
-* Via `git`: `cargo install --git https://github.com/kargaranamir/ungoliant`
+* Via `git`: `cargo install --git https://github.com/cisnlp/ungoliant`
 
 Ungoliant needs numerous dependencies that should be compiled when installing. However `cmake / gcc` can be needed as the project uses [fasttext-rs](https://github.com/messense/fasttext-rs).
 

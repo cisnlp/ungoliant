@@ -10,5 +10,4 @@ updates:
     schedule:
       interval: "weekly"
     assignees:
-      - "Uinelj"
-      - "pjox"
+      - "kargaranamir"
